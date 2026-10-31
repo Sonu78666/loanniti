@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.loanniti.app",
+      "sha256_cert_fingerprints": [
+        "0F:EB:31:ED:6B:C6:72:83:86:57:81:B5:DA:36:1E:99:53:1D:0B:E3:23:B0:47:7E:F1:C6:63:69:84:85:E4:80"
+      ]
+    }
+  }
+]
