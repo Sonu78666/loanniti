@@ -6,12 +6,12 @@
 <title>Privacy Policy – LoanNiti</title>
 <meta name="description" content="Privacy policy for LoanNiti, the free EMI calculator and home loan prepayment planner." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://loanniti-app.netlify.app/privacy.html" />
+<link rel="canonical" href="https://loanniti-eta.vercel.app/privacy.html" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="theme-color" content="#0c0e14" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
   :root { --bg: #0c0e14; --card: #161925; --text: #e8eaf0; --muted: #9aa0b4; --accent: #7c6ef5; --border: #262b3d; }
   * { box-sizing: border-box; }
@@ -28,15 +28,22 @@
   table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--muted); font-weight: 600; }
+  @media (max-width: 600px) {
+    table { table-layout: fixed; font-size: 0.85rem; }
+    th, td { padding: 8px 6px; overflow-wrap: anywhere; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N48QHZ2RHR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var lnConsent = null; try { lnConsent = localStorage.getItem("ln_consent"); } catch (e) {}
+  gtag("consent", "default", { analytics_storage: lnConsent === "granted" ? "granted" : "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
   gtag("js", new Date());
   gtag("config", "G-N48QHZ2RHR");
 </script>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -45,7 +52,7 @@
   <p class="updated">Last updated: 31 October 2026</p>
 
   <p>LoanNiti ("we", "us") provides a free EMI calculator, loan prepayment planner, and related tools at
-  <a href="https://loanniti-app.netlify.app">loanniti-app.netlify.app</a> and in the LoanNiti Android app. This
+  <a href="https://loanniti-eta.vercel.app">loanniti-eta.vercel.app</a> and in the LoanNiti Android app. This
   page explains what data we collect, why, and how you can control it.</p>
 
   <h2>The short version</h2>
@@ -62,14 +69,14 @@
     <tr><td>Email address</td><td>If you subscribe for updates</td><td>To send you occasional product updates. You can ask us to delete it at any time.</td></tr>
     <tr><td>Chat messages</td><td>If you use the AI loan assistant</td><td>Sent to our AI provider (Groq) to generate a reply. Used only to answer your question; not used to build an advertising profile.</td></tr>
     <tr><td>IP address &amp; basic request logs</td><td>Every visit/request</td><td>Rate-limiting, abuse prevention, and debugging. Kept only as long as needed for these purposes.</td></tr>
-    <tr><td>Usage analytics (pages viewed, approximate location, device type)</td><td>Every visit</td><td>Collected via Google Analytics to understand how the site is used.</td></tr>
+    <tr><td>Usage analytics (pages viewed, approximate location, device type)</td><td>Full analytics only if you accept cookies</td><td>Collected via Google Analytics to understand how the site is used. If you decline, no analytics cookies are set and Google receives only limited signals without identifiers. Loan numbers are removed from page addresses before anything is sent.</td></tr>
   </table>
 
   <h2>Third parties we use</h2>
   <ul>
     <li><strong>Google Analytics</strong> — anonymised usage analytics. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
     <li><strong>Groq</strong> — processes AI chat messages to generate responses. See <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener">Groq's Privacy Policy</a>.</li>
-    <li><strong>Netlify</strong> — hosts the website.</li>
+    <li><strong>Vercel</strong> — hosts the website.</li>
     <li><strong>Railway</strong> — hosts our backend server and the database that stores subscriber email addresses.</li>
   </ul>
   <p>We do not sell your data to anyone.</p>
@@ -77,6 +84,7 @@
   <h2>Your choices</h2>
   <ul>
     <li>You can use the calculators without giving us any personal information at all.</li>
+    <li>You can accept or decline analytics cookies, and change your choice any time in <a href="#" class="ln-consent-open">cookie settings</a>.</li>
     <li>To unsubscribe or delete your email from our list, email us (below) and we'll remove it.</li>
     <li>You can clear your browser's local storage at any time to remove any saved scenarios, which are stored only on your own device.</li>
   </ul>

@@ -6,21 +6,21 @@
 <title>EMI Calculator Guide: How EMI Is Calculated & How to Reduce It | LoanNiti</title>
 <meta name="description" content="How EMI is calculated for home, car and personal loans, the formula explained step by step, how principal/rate/tenure each affect your EMI, and practical ways to reduce it." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://loanniti-app.netlify.app/guides/emi-calculator-guide.html" />
+<link rel="canonical" href="https://loanniti-eta.vercel.app/guides/emi-calculator-guide.html" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="theme-color" content="#0c0e14" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="EMI Calculator Guide: How EMI Is Calculated & How to Reduce It" />
 <meta property="og:description" content="The EMI formula explained step by step, how principal/rate/tenure each affect your EMI, and practical ways to reduce it." />
-<meta property="og:url" content="https://loanniti-app.netlify.app/guides/emi-calculator-guide.html" />
-<meta property="og:image" content="https://loanniti-app.netlify.app/og-image.png" />
+<meta property="og:url" content="https://loanniti-eta.vercel.app/guides/emi-calculator-guide.html" />
+<meta property="og:image" content="https://loanniti-eta.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="EMI Calculator Guide: How EMI Is Calculated & How to Reduce It" />
 <meta name="twitter:description" content="The EMI formula explained step by step, how principal/rate/tenure each affect your EMI, and practical ways to reduce it." />
-<meta name="twitter:image" content="https://loanniti-app.netlify.app/og-image.png" />
+<meta name="twitter:image" content="https://loanniti-eta.vercel.app/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="guide.css">
 <script type="application/ld+json">
 {
@@ -30,7 +30,7 @@
   "description": "The EMI formula explained step by step, how principal/rate/tenure each affect your EMI, and practical ways to reduce it.",
   "author": { "@type": "Organization", "name": "LoanNiti" },
   "publisher": { "@type": "Organization", "name": "LoanNiti" },
-  "mainEntityOfPage": "https://loanniti-app.netlify.app/guides/emi-calculator-guide.html"
+  "mainEntityOfPage": "https://loanniti-eta.vercel.app/guides/emi-calculator-guide.html"
 }
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,9 +38,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var lnConsent = null; try { lnConsent = localStorage.getItem("ln_consent"); } catch (e) {}
+  gtag("consent", "default", { analytics_storage: lnConsent === "granted" ? "granted" : "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
   gtag("js", new Date());
   gtag("config", "G-N48QHZ2RHR");
 </script>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 
@@ -130,10 +133,17 @@
     <p>Want a prepayment or tenure question answered for your specific loan? Ask LoanNiti's AI assistant in Hinglish, English or Hindi.</p>
     <a href="/#tab-chat">Ask the AI Assistant</a>
   </div>
+  <h2>More guides</h2>
+  <ul>
+    <li><a href="/guides/home-loan-prepayment-guide.html">Home Loan Prepayment Guide: Save Interest the Right Way</a></li>
+    <li><a href="/guides/hdfc-home-loan-prepayment-process.html">How to Part-Prepay Your HDFC Home Loan (Step by Step)</a></li>
+    <li><a href="/guides/home-loan-tax-benefits-guide.html">Home Loan Tax Benefits: Section 80C, 24(b) &amp; 80EEA Explained</a></li>
+    <li><a href="/guides/home-loan-balance-transfer-guide.html">Home Loan Balance Transfer: When It's Worth It</a></li>
+  </ul>
 </main>
 
 <footer>
-  <a href="/">&larr; Back to LoanNiti</a> — free EMI calculator, prepayment planner & AI loan assistant
+  <a href="/">&larr; Back to LoanNiti</a> — free EMI calculator, prepayment planner & AI loan assistant &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="mailto:sonu7866yadav@gmail.com?subject=LoanNiti%20feedback">Contact</a> &middot; <a href="#" class="ln-consent-open">Cookie settings</a>
 </footer>
 
 </body>

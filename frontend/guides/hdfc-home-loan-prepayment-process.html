@@ -6,21 +6,21 @@
 <title>How to Part-Prepay Your HDFC Home Loan (Step by Step) | LoanNiti</title>
 <meta name="description" content="A real walkthrough of how to make a part prepayment on an HDFC home loan when NetBanking doesn't offer it directly — what email to send, how the payment link works, and how long it takes to reflect." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://loanniti-app.netlify.app/guides/hdfc-home-loan-prepayment-process.html" />
+<link rel="canonical" href="https://loanniti-eta.vercel.app/guides/hdfc-home-loan-prepayment-process.html" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="theme-color" content="#0c0e14" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="How to Part-Prepay Your HDFC Home Loan (Step by Step)" />
 <meta property="og:description" content="A real walkthrough of the HDFC home loan part-prepayment process — the email to send, how the payment link works, and the timeline." />
-<meta property="og:url" content="https://loanniti-app.netlify.app/guides/hdfc-home-loan-prepayment-process.html" />
-<meta property="og:image" content="https://loanniti-app.netlify.app/og-image.png" />
+<meta property="og:url" content="https://loanniti-eta.vercel.app/guides/hdfc-home-loan-prepayment-process.html" />
+<meta property="og:image" content="https://loanniti-eta.vercel.app/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="How to Part-Prepay Your HDFC Home Loan (Step by Step)" />
 <meta name="twitter:description" content="A real walkthrough of the HDFC home loan part-prepayment process — the email to send, how the payment link works, and the timeline." />
-<meta name="twitter:image" content="https://loanniti-app.netlify.app/og-image.png" />
+<meta name="twitter:image" content="https://loanniti-eta.vercel.app/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="guide.css">
 <script type="application/ld+json">
 {
@@ -30,7 +30,7 @@
   "description": "A real walkthrough of the HDFC home loan part-prepayment process when NetBanking doesn't offer it directly.",
   "author": { "@type": "Organization", "name": "LoanNiti" },
   "publisher": { "@type": "Organization", "name": "LoanNiti" },
-  "mainEntityOfPage": "https://loanniti-app.netlify.app/guides/hdfc-home-loan-prepayment-process.html"
+  "mainEntityOfPage": "https://loanniti-eta.vercel.app/guides/hdfc-home-loan-prepayment-process.html"
 }
 </script>
 <script type="application/ld+json">
@@ -52,9 +52,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var lnConsent = null; try { lnConsent = localStorage.getItem("ln_consent"); } catch (e) {}
+  gtag("consent", "default", { analytics_storage: lnConsent === "granted" ? "granted" : "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
   gtag("js", new Date());
   gtag("config", "G-N48QHZ2RHR");
 </script>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 
@@ -162,10 +165,17 @@ Thank you.
     For the general rules around prepayment penalties and strategy comparisons across lenders, see our
     <a href="/guides/home-loan-prepayment-guide.html">home loan prepayment guide</a>.
   </p>
+  <h2>More guides</h2>
+  <ul>
+    <li><a href="/guides/emi-calculator-guide.html">EMI Calculator Guide: How EMI Is Calculated &amp; How to Reduce It</a></li>
+    <li><a href="/guides/home-loan-prepayment-guide.html">Home Loan Prepayment Guide: Save Interest the Right Way</a></li>
+    <li><a href="/guides/home-loan-tax-benefits-guide.html">Home Loan Tax Benefits: Section 80C, 24(b) &amp; 80EEA Explained</a></li>
+    <li><a href="/guides/home-loan-balance-transfer-guide.html">Home Loan Balance Transfer: When It's Worth It</a></li>
+  </ul>
 </main>
 
 <footer>
-  <a href="/">&larr; Back to LoanNiti</a> — free EMI calculator, prepayment planner & AI loan assistant
+  <a href="/">&larr; Back to LoanNiti</a> — free EMI calculator, prepayment planner & AI loan assistant &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="mailto:sonu7866yadav@gmail.com?subject=LoanNiti%20feedback">Contact</a> &middot; <a href="#" class="ln-consent-open">Cookie settings</a>
 </footer>
 
 </body>
