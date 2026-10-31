@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#7c6ef5"/>
-  <text x="32" y="45" font-family="'DM Sans', Arial, sans-serif" font-size="36" font-weight="700" fill="#ffffff" text-anchor="middle">L</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0c0e14"/>
+  <rect x="119" y="141" width="52" height="230" rx="14" fill="#7c6ef5"/>
+  <rect x="193" y="199" width="52" height="172" rx="14" fill="#7c6ef5"/>
+  <rect x="267" y="257" width="52" height="114" rx="14" fill="#7c6ef5"/>
+  <rect x="341" y="315" width="52" height="56" rx="14" fill="#3ddc97"/>
 </svg>
