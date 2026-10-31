@@ -2,7 +2,7 @@
 // 100% client-side math, no network needed) keeps working offline. Anything
 // going to the backend API is always fetched fresh — never cached — since
 // chat/subscribe responses must be live.
-const CACHE_NAME = 'loanniti-shell-v4';
+const CACHE_NAME = 'loanniti-shell-v5';
 const APP_SHELL = ['/', '/index.html', '/app.js', '/consent.js', '/manifest.json', '/favicon.svg', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-maskable-192.png', '/icons/icon-maskable-512.png'];
 
 self.addEventListener('install', (event) => {

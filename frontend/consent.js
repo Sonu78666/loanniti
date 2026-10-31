@@ -1,8 +1,29 @@
-// Cookie consent for Google Analytics (Consent Mode v2). Each page sets the
-// default consent inline before gtag config; this file only shows the banner
-// and records the visitor's choice.
+// Google Analytics loader + cookie consent (Consent Mode v2). Each page queues
+// the consent default and gtag config inline; this file loads gtag.js only
+// after the page has painted (it was the largest main-thread cost on mobile),
+// shows the consent banner, and records the visitor's choice.
 (function () {
   var KEY = 'ln_consent';
+  var GA_SRC = 'https://www.googletagmanager.com/gtag/js?id=G-N48QHZ2RHR';
+
+  var gaRequested = false;
+  function loadAnalytics() {
+    if (gaRequested) return;
+    gaRequested = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = GA_SRC;
+    document.head.appendChild(s);
+  }
+  function loadWhenIdle() {
+    if ('requestIdleCallback' in window) window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+    else setTimeout(loadAnalytics, 1500);
+  }
+  if (document.readyState === 'complete') loadWhenIdle();
+  else window.addEventListener('load', loadWhenIdle);
+  ['pointerdown', 'keydown', 'scroll'].forEach(function (type) {
+    window.addEventListener(type, loadAnalytics, { once: true, passive: true });
+  });
 
   function read() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
