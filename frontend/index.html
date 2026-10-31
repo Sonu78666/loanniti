@@ -8,7 +8,12 @@
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://loanniti-app.netlify.app/" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/icons/icon-192.png" />
+<link rel="manifest" href="/manifest.json" />
 <meta name="theme-color" content="#0c0e14" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="LoanNiti" />
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website" />
@@ -25,7 +30,7 @@
 <meta name="twitter:description" content="Calculate your home loan EMI, compare prepayment strategies to save interest, and chat with an AI loan assistant in Hinglish, English or Hindi." />
 <meta name="twitter:image" content="https://loanniti-app.netlify.app/og-image.png" />
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://loanniti-backend-production.up.railway.app http://localhost:3001 https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com;" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://loanniti-backend-production.up.railway.app http://localhost:3001 https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; manifest-src 'self'; worker-src 'self';" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N48QHZ2RHR"></script>
@@ -562,6 +567,8 @@
     <button class="tab-btn active" data-tab="calculator">EMI Calculator</button>
     <button class="tab-btn" data-tab="planner">Early Closure Planner</button>
     <button class="tab-btn" data-tab="compare">Compare Loans</button>
+    <button class="tab-btn" data-tab="eligibility">Eligibility</button>
+    <button class="tab-btn" data-tab="sip">SIP vs Prepay</button>
     <button class="tab-btn" data-tab="chat">AI Chat</button>
   </div>
   <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
@@ -740,6 +747,85 @@
     </div>
   </section>
 
+  <!-- TAB: Loan Eligibility -->
+  <section class="tab-panel" id="tab-eligibility">
+    <p class="planner-subtitle" style="margin-bottom:18px;">How much loan can you realistically get, based on your income and existing obligations?</p>
+    <div class="card">
+      <h2 class="section-title">Your income &amp; obligations</h2>
+      <div class="planner-inputs">
+        <div class="field"><label>Monthly income (₹)</label><input type="number" id="eligIncome" value="80000" min="0" step="1000"></div>
+        <div class="field"><label>Existing EMIs (₹)</label><input type="number" id="eligExistingEmi" value="0" min="0" step="500"></div>
+        <div class="field"><label>FOIR allowed (%)</label><input type="number" id="eligFoir" value="50" min="30" max="65" step="5"></div>
+        <div class="field"><label>Interest rate (%)</label><input type="number" id="eligRate" value="9.5" min="5" max="20" step="0.05"></div>
+      </div>
+      <div class="planner-inputs" style="grid-template-columns: 1fr 3fr;">
+        <div class="field"><label>Tenure (years)</label><input type="number" id="eligTenure" value="20" min="1" max="30" step="1"></div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="label">Maximum loan you're eligible for</div>
+      <div class="emi-amount mono" id="eligMaxLoan">₹0</div>
+      <div class="meta-boxes">
+        <div class="meta-box"><div class="meta-label">Max EMI you can afford</div><div class="meta-value mono" id="eligMaxEmi">₹0</div></div>
+        <div class="meta-box"><div class="meta-label">FOIR used</div><div class="meta-value mono" id="eligFoirUsed">50%</div></div>
+        <div class="meta-box"><div class="meta-label">Existing EMI load</div><div class="meta-value mono" id="eligExistingLoad">₹0</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">How this is calculated</h2>
+      <p style="font-size:13.5px; color:var(--text-dim); line-height:1.6; margin:0;">
+        Banks typically cap your total EMI obligations (existing + new) at a fixed percentage of your monthly
+        income — called FOIR (Fixed Obligation to Income Ratio), usually 40&ndash;60% depending on income level
+        and lender. Max new EMI = (Income &times; FOIR%) &minus; Existing EMIs. The loan amount is then
+        back-calculated from that EMI using your chosen rate and tenure. This is an estimate — actual eligibility
+        also depends on credit score, employer, property value and the specific lender's policy.
+      </p>
+    </div>
+  </section>
+
+  <!-- TAB: SIP vs Prepayment -->
+  <section class="tab-panel" id="tab-sip">
+    <p class="planner-subtitle" style="margin-bottom:18px;">Same extra money every month — invest it in a SIP, or use it to prepay your loan? Compare both.</p>
+    <div class="context-pill" id="sipContextPill" style="margin-bottom:16px;">● Loan context loading…</div>
+
+    <div class="card">
+      <h2 class="section-title">Your extra monthly amount</h2>
+      <div class="planner-inputs">
+        <div class="field"><label>Extra amount per month (₹)</label><input type="number" id="sipExtraMonthly" value="5000" min="500" step="500"></div>
+        <div class="field"><label>Expected SIP annual return (%)</label><input type="number" id="sipReturnRate" value="12" min="1" max="30" step="0.5"></div>
+      </div>
+    </div>
+
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <h5>Option A: Prepay the loan</h5>
+        <div class="strategy-stat saved"><span>Interest saved</span><span class="v mono" id="sipInterestSaved">₹0</span></div>
+        <div class="strategy-stat"><span>Loan closes in</span><span class="v mono" id="sipCloseDuration">—</span></div>
+        <div class="strategy-stat"><span>Months saved</span><span class="v mono" id="sipMonthsSaved">0</span></div>
+      </div>
+      <div class="strategy-card">
+        <h5>Option B: Invest in a SIP instead</h5>
+        <div class="strategy-stat saved"><span>Corpus after same period</span><span class="v mono" id="sipCorpus">₹0</span></div>
+        <div class="strategy-stat"><span>Total invested</span><span class="v mono" id="sipTotalInvested">₹0</span></div>
+        <div class="strategy-stat"><span>Gains</span><span class="v mono" id="sipGains">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">An important caveat</h2>
+      <p id="sipVerdict" style="font-size:14px; color: var(--text); margin: 0 0 10px;"></p>
+      <p style="font-size:12.5px; color:var(--text-dim); line-height:1.6; margin:0;">
+        This isn't a fair apples-to-apples comparison, and it's worth reading before acting on it. Prepayment is a
+        <strong>guaranteed, risk-free</strong> return equal to your loan's interest rate. A SIP's return depends on
+        actual market performance and is never guaranteed — the corpus above assumes your expected return happens
+        smoothly every single year, which real markets don't do. Treat the SIP number as a plausible estimate under
+        that assumption, not a promise. Many people split the difference — investing some and prepaying some.
+      </p>
+    </div>
+  </section>
+
   <!-- TAB 3: AI Chat -->
   <section class="tab-panel" id="tab-chat">
     <div class="chat-layout">
@@ -873,6 +959,23 @@ function computeEMI(principal, annualRate, tenureYears) {
   return (principal * r * pow) / (pow - 1);
 }
 
+// Inverse of computeEMI: given an affordable EMI, what principal does that buy?
+function maxLoanForEmi(emi, annualRate, tenureYears) {
+  const r = annualRate / 12 / 100;
+  const n = tenureYears * 12;
+  if (r === 0) return emi * n;
+  const pow = Math.pow(1 + r, n);
+  return (emi * (pow - 1)) / (r * pow);
+}
+
+// SIP future value (annuity due — contribution at the start of each month),
+// the convention Indian SIP calculators use.
+function sipFutureValue(monthlyAmount, annualReturnPercent, months) {
+  const i = annualReturnPercent / 12 / 100;
+  if (i === 0) return monthlyAmount * months;
+  return monthlyAmount * ((Math.pow(1 + i, months) - 1) / i) * (1 + i);
+}
+
 function buildAmortizationSchedule(principal, annualRate, tenureYears) {
   const r = annualRate / 12 / 100;
   const n = tenureYears * 12;
@@ -994,6 +1097,8 @@ document.querySelectorAll('.tab-btn').forEach((btn) => {
     document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     if (btn.dataset.tab === 'planner') renderPlanner();
     if (btn.dataset.tab === 'compare') renderCompareResults();
+    if (btn.dataset.tab === 'eligibility') renderEligibility();
+    if (btn.dataset.tab === 'sip') renderSipComparison();
     if (btn.dataset.tab === 'chat') updateContextPill();
   });
 });
@@ -1482,6 +1587,79 @@ document.getElementById('addCompareLoanBtn').addEventListener('click', () => {
 });
 
 // ============================================================
+// Tab: Loan Eligibility
+// ============================================================
+function renderEligibility() {
+  const income = Math.max(0, Number(document.getElementById('eligIncome').value) || 0);
+  const existingEmi = Math.max(0, Number(document.getElementById('eligExistingEmi').value) || 0);
+  const foir = Math.min(65, Math.max(30, Number(document.getElementById('eligFoir').value) || 50));
+  const rate = Number(document.getElementById('eligRate').value) || 9.5;
+  const tenure = Number(document.getElementById('eligTenure').value) || 20;
+
+  const maxTotalEmi = income * (foir / 100);
+  const maxNewEmi = Math.max(0, maxTotalEmi - existingEmi);
+  const maxLoan = maxNewEmi > 0 ? maxLoanForEmi(maxNewEmi, rate, tenure) : 0;
+
+  document.getElementById('eligMaxLoan').textContent = formatINR(maxLoan);
+  document.getElementById('eligMaxEmi').textContent = formatINR(maxNewEmi);
+  document.getElementById('eligFoirUsed').textContent = foir + '%';
+  document.getElementById('eligExistingLoad').textContent = formatINR(existingEmi);
+}
+
+['eligIncome', 'eligExistingEmi', 'eligFoir', 'eligRate', 'eligTenure'].forEach((id) => {
+  document.getElementById(id).addEventListener('input', renderEligibility);
+});
+
+// ============================================================
+// Tab: SIP vs Prepayment
+// ============================================================
+function renderSipComparison() {
+  const { amount, rate, tenure } = loanState;
+  const extraMonthly = Math.max(0, Number(document.getElementById('sipExtraMonthly').value) || 0);
+  const sipReturn = Number(document.getElementById('sipReturnRate').value) || 12;
+
+  const pill = document.getElementById('sipContextPill');
+  if (pill) pill.textContent = `● Calculating for: ${formatINR(amount)} · ${rate.toFixed(2)}% · ${tenure}yr · EMI ${formatINR(loanState.emi)}`;
+
+  const base = simulateWithPrepayment(amount, rate, tenure, {});
+  const withExtra = simulateWithPrepayment(amount, rate, tenure, { extraMonthly });
+  const months = withExtra.months;
+  const interestSaved = base.totalInterest - withExtra.totalInterest;
+  const monthsSaved = base.months - withExtra.months;
+
+  document.getElementById('sipInterestSaved').textContent = formatINR(interestSaved);
+  document.getElementById('sipCloseDuration').textContent = formatMonthsAsDuration(months);
+  document.getElementById('sipMonthsSaved').textContent = Math.max(0, monthsSaved);
+
+  const corpus = sipFutureValue(extraMonthly, sipReturn, months);
+  const totalInvested = extraMonthly * months;
+  const gains = corpus - totalInvested;
+
+  document.getElementById('sipCorpus').textContent = formatINR(corpus);
+  document.getElementById('sipTotalInvested').textContent = formatINR(totalInvested);
+  document.getElementById('sipGains').textContent = formatINR(gains);
+
+  const verdict = document.getElementById('sipVerdict');
+  if (corpus > interestSaved) {
+    verdict.textContent = `Over the same ${formatMonthsAsDuration(months)}, the SIP's estimated corpus (${formatINR(corpus)}) is larger than the interest you'd save by prepaying (${formatINR(interestSaved)}) — but see the caveat below before deciding.`;
+  } else {
+    verdict.textContent = `Over the same ${formatMonthsAsDuration(months)}, prepaying saves more (${formatINR(interestSaved)}) than the SIP's estimated corpus (${formatINR(corpus)}) — and prepayment's saving is guaranteed, unlike the SIP's.`;
+  }
+}
+
+function formatMonthsAsDuration(totalMonths) {
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  if (years === 0) return `${months} month${months === 1 ? '' : 's'}`;
+  if (months === 0) return `${years} year${years === 1 ? '' : 's'}`;
+  return `${years}y ${months}m`;
+}
+
+['sipExtraMonthly', 'sipReturnRate'].forEach((id) => {
+  document.getElementById(id).addEventListener('input', renderSipComparison);
+});
+
+// ============================================================
 // Tab 3: AI Chat
 // ============================================================
 const sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
@@ -1738,7 +1916,15 @@ applyStrategyTab('lumpSumOnly');
 applyLoanMode('new');
 renderCompareCards();
 renderCompareResults();
+renderEligibility();
+renderSipComparison();
 loadStateFromURL();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
